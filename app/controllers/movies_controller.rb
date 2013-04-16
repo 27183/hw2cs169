@@ -6,7 +6,25 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
+  def index_by_title
+    @movies = Movie.order(:title)
+    @hilight = :title
+  end
+
+  def index_by_release
+    @movies = Movie.order(:release_date)
+    @hilight = :release
+  end
+   
+  def sort_by_title
+    @movies = Movie.order(:title)
+  end
+  def sort_by_release
+    @movies = Movie.order(:release_date)
+  end
+
   def index
+    sort_tag = params[:sort_type]
     @movies = Movie.all
   end
 
